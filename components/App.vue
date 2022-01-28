@@ -57,6 +57,9 @@
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Expiration
               </th>
+              <th v-if=licenseResult.ff scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Addons
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -70,6 +73,9 @@
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 {{licenseResult.expirationDate}}
+              </td>
+              <td v-if=licenseResult.ff class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{licenseResult.ff}}
               </td>
            
             </tr>
@@ -123,7 +129,8 @@ export default {
                             isExpired : (Date.now()/1000 < licenseDecoded.exp ) ? false : true,
                             isTrial : (licenseDecoded.lt == "trial") ? true: false,
                             creationDate: new Date(licenseDecoded.iat * 1000).toLocaleString('en-US',{timeZone:'UTC'}),
-                            expirationDate: new Date(licenseDecoded.exp * 1000).toLocaleString('en-US',{timeZone:'UTC'}) 
+                            expirationDate: new Date(licenseDecoded.exp * 1000).toLocaleString('en-US',{timeZone:'UTC'}),
+                            ff: licenseDecoded.addOns  
                             }
         
 
