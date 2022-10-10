@@ -173,7 +173,7 @@
         if (licenseDecoded != null) {
           this.licenseResult = {
             isExpired: Date.now() / 1000 < licenseDecoded.exp ? false : true,
-            isTrial: licenseDecoded.lt == "trial" ? true : false,
+            isTrial: licenseDecoded.lt.includes("trial") ? true : false,
             creationDate: new Date(licenseDecoded.iat * 1000).toLocaleString(
               "en-US",
               { timeZone: "UTC" }
